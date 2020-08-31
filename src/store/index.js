@@ -1,11 +1,148 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import * as fb from "../firebase";
+import router from "../router/index";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
+// realtime firebase connection
+// ziekenhuizen
+fb.ziekenhuisCollection.orderBy("id", "asc").limit(5).onSnapshot(snapshot => {
+  let ziekenhuisArray = [];
+
+  snapshot.forEach(doc => {
+    let ziekenhuis = doc.data();
+    ziekenhuis.id = doc.id;
+
+    // console.log('Dit is ziekenhuis: ' + ziekenhuis.Latitude)
+
+    ziekenhuisArray.push(ziekenhuis);
+  });
+
+  store.commit("setZiekenhuizen", ziekenhuisArray);
 });
+
+
+// posts
+fb.postsCollection.orderBy("createdOn", "desc").limit(5).onSnapshot(snapshot => {
+  let postsArray = [];
+
+  snapshot.forEach(doc => {
+    let post = doc.data();
+    post.id = doc.id;
+
+    postsArray.push(post);
+  });
+
+  store.commit("setPosts", postsArray);
+});
+
+
+// meldingen
+fb.meldingenCollection.limit(5).onSnapshot(snapshot => {
+  let events = [];
+
+  snapshot.forEach(doc => {
+    // console.log(doc.data())
+    let eventData = doc.data();
+    eventData.id = doc.id;
+
+    events.push(eventData);
+  });
+
+  store.commit("setEvents", events)
+})
+
+
+// create store
+const store = new Vuex.Store({
+  state: {
+    userProfile: {},
+    posts: [],
+    ziekenhuizen: [],
+    events: []
+  },
+  mutations: {
+    setUserProfile(state, val) {
+      state.userProfile = val;
+    },
+    setPosts(state, val) {
+      state.posts = val;
+    },
+    setZiekenhuizen(state, val) {
+      state.ziekenhuizen = val;
+    },
+    setEvents(state, val) {
+      state.events = val
+    }
+  },
+  actions: {
+    async createPost({ state }, post) {
+      await fb.postsCollection.add({
+        createdOn: new Date(),
+        content: post.content,
+        userId: fb.auth.currentUser.uid,
+        userName: state.userProfile.name,
+        comments: 0,
+        likes: 0
+      });
+    },
+    async login({ dispatch }, form) {
+      // sign in user
+      const { user } = await fb.auth.signInWithEmailAndPassword(
+        form.email,
+        form.password
+      );
+
+      // fetch user profile and set in state
+      dispatch("fetchUserProfile", user);
+    },
+    async fetchUserProfile({ commit }, user) {
+      // fetch user profile
+      const userProfile = await fb.usersCollection.doc(user.uid).get();
+
+      // set user profile in state
+      commit("setUserProfile", userProfile.data());
+
+      // change route to dashboard
+      router.push("/");
+    },
+    async signup({ dispatch }, form) {
+      // sign up user
+      const { user } = await fb.auth.createUserWithEmailAndPassword(
+        form.email,
+        form.password
+      );
+
+      // create user profile object in userCollections
+      await fb.usersCollection.doc(user.uid).set({
+        name: form.name,
+        title: form.title
+      });
+
+      // fetch user profile and set in state
+      dispatch("fetchUserProfile", user);
+    },
+    async logout({ commit }) {
+      await fb.auth.signOut();
+
+      // clear userProfile and redirect to /login
+      commit("setUserProfile", {});
+      router.push("/login");
+    }
+  },
+  getters: {
+    getZiekenhuizen(state) {
+      return state.ziekenhuizen
+    },
+    getZiekenhuis(state) {
+      return (ziekenhuisID) => {
+        return state.ziekenhuizen.find((ziekenhuis) => {
+          return ziekenhuis.id === ziekenhuisID
+        })
+      }
+    }
+  }
+});
+
+export default store;
