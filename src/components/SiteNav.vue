@@ -20,11 +20,13 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/situatie">
-            <icon-base class="link-icon" icon-name="situatie">
-              <icon-situatie />
-            </icon-base>Situatie
-          </router-link>
+          <span @click.capture="clicked">
+            <router-link to="/situatie">
+              <icon-base class="link-icon" icon-name="situatie">
+                <icon-situatie />
+              </icon-base>Situatie
+            </router-link>
+          </span>
         </li>
         <li>
           <router-link to="/inbox">
@@ -41,11 +43,13 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/settings">
-            <icon-base class="link-icon" icon-name="settings">
-              <icon-settings />
-            </icon-base>Settings
-          </router-link>
+          <span @click.capture="clicked">
+            <router-link to="/settings">
+              <icon-base class="link-icon" icon-name="settings">
+                <icon-settings />
+              </icon-base>Settings
+            </router-link>
+          </span>
         </li>
         <li id="logout">
           <a @click="logout()">
