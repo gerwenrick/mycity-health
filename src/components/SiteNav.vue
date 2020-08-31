@@ -51,7 +51,7 @@
           <a @click="logout()">
             <icon-base class="link-icon" icon-name="settings">
               <icon-logout />
-            </icon-base>Lougout
+            </icon-base>Logout
           </a>
         </li>
       </ul>
