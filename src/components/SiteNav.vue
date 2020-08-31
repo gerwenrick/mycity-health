@@ -68,8 +68,8 @@ import IconHome from "../components/Icons/IconHome";
 import IconCalendar from "../components/Icons/IconCalendar";
 import IconDashboard from "../components/Icons/IconDashboard";
 import IconInbox from "../components/Icons/IconInbox";
-import IconSettings from "../components/Icons/IconSettings";
-import IconSituatie from "../components/Icons/IconSituatie";
+// import IconSettings from "../components/Icons/IconSettings";
+// import IconSituatie from "../components/Icons/IconSituatie";
 import IconLogout from "../components/Icons/IconLogout";
 
 export default {
@@ -79,8 +79,8 @@ export default {
     IconCalendar,
     IconDashboard,
     IconInbox,
-    IconSettings,
-    IconSituatie,
+    // IconSettings,
+    // IconSituatie,
     IconLogout
   },
   data() {
@@ -90,8 +90,8 @@ export default {
       IconCalendar,
       IconDashboard,
       IconInbox,
-      IconSettings,
-      IconSituatie,
+      // IconSettings,
+      // IconSituatie,
       IconLogout
     };
   },
