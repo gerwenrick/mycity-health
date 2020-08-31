@@ -19,15 +19,13 @@
             </icon-base>Ziekenhuizen
           </router-link>
         </li>
-        <li>
-          <span @click.capture="clicked">
-            <router-link to="/situatie">
-              <icon-base class="link-icon" icon-name="situatie">
-                <icon-situatie />
-              </icon-base>Situatie
-            </router-link>
-          </span>
-        </li>
+        <!-- <li>
+          <router-link to="/situatie">
+            <icon-base class="link-icon" icon-name="situatie">
+              <icon-situatie />
+            </icon-base>Situatie
+          </router-link>
+        </li>-->
         <li>
           <router-link to="/inbox">
             <icon-base class="link-icon" icon-name="inbox">
@@ -42,15 +40,13 @@
             </icon-base>Kalender
           </router-link>
         </li>
-        <li>
-          <span @click.capture="clicked">
+        <!-- <li>
             <router-link to="/settings">
               <icon-base class="link-icon" icon-name="settings">
                 <icon-settings />
               </icon-base>Settings
             </router-link>
-          </span>
-        </li>
+        </li>-->
         <li id="logout">
           <a @click="logout()">
             <icon-base class="link-icon" icon-name="settings">
