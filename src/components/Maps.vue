@@ -66,13 +66,7 @@ export default {
   },
   mounted: {},
   methods: {
-    // onReady() {
-    //   this.$refs.map.mapObject.fitBounds(
-    //     this.markers.map(m => {
-    //       return [m.lat, m.lng];
-    //     })
-    //   );
-    // },
+    onReady() {},
     onLoadZiekenhuis(id) {
       this.$router.push("/ziekenhuizen/" + id);
     },
