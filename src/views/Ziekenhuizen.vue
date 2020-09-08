@@ -2,7 +2,7 @@
   <div class="content">
     <h1>Ziekenhuizen</h1>
     <v-container>
-      <v-layout>
+      <v-layout row wrap>
         <v-flex xs12 offset-sm1 offset-md2 class="zkh-list">
           <v-card
             class="mx-auto zkh-card"
