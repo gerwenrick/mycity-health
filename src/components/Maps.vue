@@ -44,8 +44,8 @@ export default {
       center: [52.092876, 5.10448],
       currentZoom: 8,
       currentCenter: [52.092876, 5.10448],
-      // url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      url: "https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png",
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      // url: "https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png",
       attribution:
         '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
       marker: latLng(47.41322, -1.219482),
@@ -66,13 +66,13 @@ export default {
   },
   mounted: {},
   methods: {
-    onReady() {
-      this.$refs.map.mapObject.fitBounds(
-        this.markers.map(m => {
-          return [m.lat, m.lng];
-        })
-      );
-    },
+    // onReady() {
+    //   this.$refs.map.mapObject.fitBounds(
+    //     this.markers.map(m => {
+    //       return [m.lat, m.lng];
+    //     })
+    //   );
+    // },
     onLoadZiekenhuis(id) {
       this.$router.push("/ziekenhuizen/" + id);
     },
