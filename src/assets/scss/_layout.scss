@@ -9,7 +9,7 @@ header {
 	top: 0;
 	background: $primary;
 	color: $white;
-	box-shadow: 0 0 5px 0 rgba($dark, 0.5);
+	// box-shadow: 0 0 5px 0 rgba($dark, 0.5);
 	z-index: 9999;
 	width: 100%;
 	max-width: 275px;
@@ -127,6 +127,100 @@ header {
 		ul {
 			float: none;
 			text-align: center;
+		}
+	}
+}
+
+#userRow {
+	position: absolute;
+	background-color: $primary;
+	top: 0;
+	right: 0;
+	height: 50px;
+	width: calc(100% - 275px);
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+	align-items: center;
+	color: $white;
+	padding-right: 15px;
+	
+
+	.userBlock {
+		width: 100%;
+		height: 100%;
+    display: flex;
+		flex-flow: row nowrap;
+		position: relative;
+		color: $white;
+		justify-content: flex-end;
+		align-items: center;
+		list-style-type: none;
+
+		li {
+			display: flex;
+			height: 100%;
+			margin-right: 1rem;
+			width: auto;
+			flex-flow: row nowrap;
+			align-items: center;
+
+			div {
+				width: auto;
+				display: flex;
+				flex-flow: row nowrap;
+
+			}
+		}
+		
+		p {
+			margin: 0;
+			font-weight: 600;
+		}
+
+		a {
+			position: relative;
+			display: flex;
+			flex-flow: row nowrap;
+			justify-self: center;
+			height: 100%;
+			color: $white;
+			margin: auto 0;
+
+			&:after {
+				display: block;
+				content: '';
+				position: absolute;
+				top: calc(100% + .2em);
+				left: 1%;
+				width: 90%;
+				height: 0px;
+				background-color: $secondary;
+				transition: .1s ease-in-out;
+			}
+
+			&:hover {
+				// text-decoration: underline;
+				// opacity: .8;
+
+				&:after {
+					height: 3px;
+				}
+
+
+			}
+		}
+
+		svg {
+			height: 1.5em;
+			width: 1.5em;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			display: block;
+			margin-right: 0.3em;
+			margin-left: 0.5em;
+			fill: #ffffff;
 		}
 	}
 }
@@ -551,6 +645,7 @@ header {
 	min-height: 100vh;
 	padding: 2em;
 	margin-left: 275px;
+	margin-top: 50px;
 }
 
 // ziekenhuizen

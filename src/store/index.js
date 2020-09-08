@@ -7,14 +7,12 @@ Vue.use(Vuex);
 
 // realtime firebase connection
 // ziekenhuizen
-fb.ziekenhuisCollection.orderBy("id", "asc").limit(5).onSnapshot(snapshot => {
+fb.ziekenhuisCollection.orderBy("id", "asc").limit(10).onSnapshot(snapshot => {
   let ziekenhuisArray = [];
 
   snapshot.forEach(doc => {
     let ziekenhuis = doc.data();
     ziekenhuis.id = doc.id;
-
-    // console.log('Dit is ziekenhuis: ' + ziekenhuis.Latitude)
 
     ziekenhuisArray.push(ziekenhuis);
   });
@@ -43,7 +41,6 @@ fb.meldingenCollection.limit(5).onSnapshot(snapshot => {
   let events = [];
 
   snapshot.forEach(doc => {
-    // console.log(doc.data())
     let eventData = doc.data();
     eventData.id = doc.id;
 

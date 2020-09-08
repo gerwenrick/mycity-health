@@ -19,13 +19,13 @@
             </icon-base>Ziekenhuizen
           </router-link>
         </li>
-        <!-- <li>
+        <li>
           <router-link to="/situatie">
             <icon-base class="link-icon" icon-name="situatie">
               <icon-situatie />
             </icon-base>Situatie
           </router-link>
-        </li>-->
+        </li>
         <li>
           <router-link to="/inbox">
             <icon-base class="link-icon" icon-name="inbox">
@@ -40,20 +40,20 @@
             </icon-base>Kalender
           </router-link>
         </li>
-        <!-- <li>
-            <router-link to="/settings">
-              <icon-base class="link-icon" icon-name="settings">
-                <icon-settings />
-              </icon-base>Settings
-            </router-link>
-        </li>-->
-        <li id="logout">
-          <a @click="logout()">
+        <li>
+          <router-link to="/settings">
             <icon-base class="link-icon" icon-name="settings">
+              <icon-settings />
+            </icon-base>Settings
+          </router-link>
+        </li>
+        <!-- <li id="logout">
+          <a @click="logout()">
+            <icon-base class="link-icon" icon-name="logout">
               <icon-logout />
             </icon-base>Logout
           </a>
-        </li>
+        </li>-->
       </ul>
     </section>
     <section id="copyright">
@@ -68,9 +68,9 @@ import IconHome from "../components/Icons/IconHome";
 import IconCalendar from "../components/Icons/IconCalendar";
 import IconDashboard from "../components/Icons/IconDashboard";
 import IconInbox from "../components/Icons/IconInbox";
-// import IconSettings from "../components/Icons/IconSettings";
-// import IconSituatie from "../components/Icons/IconSituatie";
-import IconLogout from "../components/Icons/IconLogout";
+import IconSettings from "../components/Icons/IconSettings";
+import IconSituatie from "../components/Icons/IconSituatie";
+// import IconLogout from "../components/Icons/IconLogout";
 
 export default {
   components: {
@@ -79,9 +79,9 @@ export default {
     IconCalendar,
     IconDashboard,
     IconInbox,
-    // IconSettings,
-    // IconSituatie,
-    IconLogout
+    IconSettings,
+    IconSituatie
+    // IconLogout
   },
   data() {
     return {
@@ -90,15 +90,15 @@ export default {
       IconCalendar,
       IconDashboard,
       IconInbox,
-      // IconSettings,
-      // IconSituatie,
-      IconLogout
+      IconSettings,
+      IconSituatie
+      // IconLogout
     };
   },
   methods: {
-    logout() {
-      this.$store.dispatch("logout");
-    }
+    // logout() {
+    //   this.$store.dispatch("logout");
+    // }
   }
 };
 </script>

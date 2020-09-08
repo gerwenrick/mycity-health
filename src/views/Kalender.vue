@@ -118,7 +118,7 @@
       </v-col>
     </v-row>
 
-    <div>
+    <!-- <div>
       <ul v-for="event in events" :key="event.id">
         <li>
           <div>
@@ -130,7 +130,7 @@
           </div>
         </li>
       </ul>
-    </div>
+    </div>-->
   </div>
 </template>
 
@@ -144,16 +144,16 @@ export default {
     focus: new Date().toISOString().substr(0, 5),
     type: "month",
     typeToLabel: {
-      month: "Month",
+      month: "Maand",
       week: "Week",
-      day: "Day",
-      "4day": "4 Days"
+      day: "Dag",
+      "4day": "4 Dagen"
     },
     name: null,
     details: null,
     start: null,
     end: null,
-    color: "#1976D2", // default event color
+    color: "#657786", // default event color
     currentlyEditing: null,
     selectedEvent: {},
     selectedElement: null,
