@@ -27,6 +27,11 @@
               </v-list-item>
               <v-list-item>
                 <v-list-item-content>
+                  <v-list-item-title>Capaciteit: {{ziekenhuis.Capaciteit}}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-content>
                   <v-list-item-title>AGBCODE: {{ziekenhuis.AGBCODE}}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>

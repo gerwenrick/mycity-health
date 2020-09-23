@@ -757,8 +757,28 @@ header {
 		.v-card__title {
 			word-break: normal;
 		}
+
+		.zkh-Cap {
+			margin: 0 5px;
+		}
+
+		.v-progress-linear {
+			// background: $primary;
+			.v-progress-linear__buffer {
+				background: $light;
+			}
+			.v-progress-linear__determinate {
+				background: $medium;
+				z-index: 1;
+			}
+			.v-progress-linear__content {
+				justify-content: left;
+				padding-left: .5rem;
+			}
+		}
 	}
 }
+
 
 
 

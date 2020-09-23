@@ -20,6 +20,16 @@
                   <h5>{{ ziekenhuis.Naam }}</h5>
                   <!-- <div>Adresgegevens</div> -->
                 </v-card-title>
+                <v-progress-linear
+                  class="zkh-Cap"
+                  v-model="ziekenhuis.Capaciteit"
+                  height="25"
+                  rounded
+                >
+                  <template v-slot="{ value }">
+                    <strong>{{ Math.ceil(value) }}%</strong>
+                  </template>
+                </v-progress-linear>
               </v-layout>
             </v-container>
           </v-card>

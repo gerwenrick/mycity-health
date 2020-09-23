@@ -2,6 +2,8 @@
 
 https://savvyapps.com/blog/definitive-guide-building-web-app-vuejs-firebase
 
+Travel Notes
+
 ## Project setup
 
 ```
