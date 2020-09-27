@@ -9,16 +9,33 @@ Vue.use(Vuex);
 // ziekenhuizen
 fb.ziekenhuisCollection.orderBy("id", "asc").limit(10).onSnapshot(snapshot => {
   let ziekenhuisArray = [];
+  let ziekenhuisTypeArray = [];
+  let ziekenhuisSpecialArray = [];
 
   snapshot.forEach(doc => {
     let ziekenhuis = doc.data();
+    let zkhType = ziekenhuis.Type;
+    let zkhSpecialiteiten = ziekenhuis.Specialiteiten;
+
     ziekenhuis.id = doc.id;
 
     ziekenhuisArray.push(ziekenhuis);
+    ziekenhuisTypeArray.sort().push(zkhType);
+    ziekenhuisSpecialArray.push(zkhSpecialiteiten);
   });
 
+  const zkhSpecialArray = [].concat.apply([], ziekenhuisSpecialArray).sort();
+
+  let uniqueZkhType = [...new Set(ziekenhuisTypeArray)];
+  let uniqueZkhSpecial = [...new Set(zkhSpecialArray)];
+
+
   store.commit("setZiekenhuizen", ziekenhuisArray);
+  store.commit("setZiekenhuisType", uniqueZkhType);
+  // store.commit("setZiekenhuisSpecial", ziekenhuisSpecialArray);
+  store.commit("setZiekenhuisSpecial", uniqueZkhSpecial);
 });
+
 
 
 // posts
@@ -57,6 +74,8 @@ const store = new Vuex.Store({
     userProfile: {},
     posts: [],
     ziekenhuizen: [],
+    ziekenhuisTypen: [],
+    ziekenhuisSpecialiteiten: [],
     events: []
   },
   mutations: {
@@ -68,6 +87,12 @@ const store = new Vuex.Store({
     },
     setZiekenhuizen(state, val) {
       state.ziekenhuizen = val;
+    },
+    setZiekenhuisType(state, val) {
+      state.ziekenhuisTypen = val;
+    },
+    setZiekenhuisSpecial(state, val) {
+      state.ziekenhuisSpecialiteiten = val;
     },
     setEvents(state, val) {
       state.events = val

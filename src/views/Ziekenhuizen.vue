@@ -2,6 +2,41 @@
   <div class="content">
     <h1>Ziekenhuizen</h1>
 
+    <v-container class="zkh-filters">
+      <v-layout row wrap>
+        <h5>Filters</h5>
+
+        <div class="container" row wrap>
+          <div id="selectType" class="selectOption">
+            <label for="ziekenhuisType">Type: </label>
+            <select name="ziekenhuisType" id="ziekenhuisType">
+              <option
+                v-for="(ziekenhuisType, index) in ziekenhuisTypen"
+                :key="index"
+                value="ziekenhuisType"
+                :id="ziekenhuisType"
+              >
+                {{ ziekenhuisType }}
+              </option>
+            </select>
+          </div>
+
+          <div id="selectSpecial" class="selectOption">
+            <label for="ziekenhuisSpecial">Specialiteiten: </label>
+            <select name="ziekenhuisSpecial" id="ziekenhuisSpecial">
+              <option
+                v-for="(ziekenhuisSpecial, index) in ziekenhuisSpecialiteiten"
+                :key="index"
+              >
+                {{ ziekenhuisSpecial }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div id="soortCheckbox"></div>
+      </v-layout>
+    </v-container>
+
     <v-container>
       <v-layout row wrap>
         <v-flex xs12 offset-sm1 offset-md2 class="zkh-list">
@@ -76,12 +111,20 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      ziekenhuis: []
+      ziekenhuis: [],
+      ziekenhuisType: [],
+      ziekenhuisSpecial: [],
+      selectSpecial: []
     };
   },
   // props: ["id", "name"],
   computed: {
-    ...mapState(["userProfile", "ziekenhuizen"])
+    ...mapState([
+      "userProfile",
+      "ziekenhuizen",
+      "ziekenhuisTypen",
+      "ziekenhuisSpecialiteiten"
+    ])
   },
   methods: {
     onLoadZiekenhuis(id) {
