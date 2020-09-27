@@ -15,14 +15,43 @@
         :key="ziekenhuis.id"
         :lat-lng="latLng(ziekenhuis.Latitude, ziekenhuis.Longitude)"
       >
-        <l-icon :icon-size="iconSize" :icon-url="icon" :icon-anchor="iconAnchor" />
+        <l-icon
+          :icon-size="iconSize"
+          :icon-url="icon"
+          :icon-anchor="iconAnchor"
+        />
         <l-popup>
-          <h4>{{ziekenhuis.Naam}}</h4>
-          <p>{{ ziekenhuis.Straat }} {{ ziekenhuis.Nummer }}, {{ ziekenhuis.Postcode }} {{ ziekenhuis.Plaats }}</p>
+          <h4>{{ ziekenhuis.Naam }}</h4>
+          <div class="zkh-bezet-bar">
+            <div
+              class="progress"
+              :style="{
+                width:
+                  bezetting(
+                    ziekenhuis.Capaciteit_bezet,
+                    ziekenhuis.Capaciteit_totaal
+                  ) + '%'
+              }"
+            ></div>
+            <p class="percent">
+              {{
+                bezetting(
+                  ziekenhuis.Capaciteit_bezet,
+                  ziekenhuis.Capaciteit_totaal
+                )
+              }}%
+            </p>
+          </div>
+          <p>
+            {{ ziekenhuis.Straat }} {{ ziekenhuis.Nummer }},
+            <br />
+            {{ ziekenhuis.Postcode }} {{ ziekenhuis.Plaats }}
+          </p>
           <v-btn
             :to="'/ziekenhuizen/' + ziekenhuis.id"
             @click="onLoadZiekenhuis(ziekenhuis.id)"
-          >Meer Informatie</v-btn>
+            >Meer Informatie</v-btn
+          >
         </l-popup>
       </l-marker>
     </l-map>
@@ -78,6 +107,9 @@ export default {
     },
     zoomUpdate: function(zoom) {
       this.currentZoom = zoom;
+    },
+    bezetting(bezet, totaal) {
+      return Math.floor((bezet / totaal) * 100);
     }
   }
 };

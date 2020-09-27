@@ -144,6 +144,7 @@ header {
 	align-items: center;
 	color: $white;
 	padding-right: 15px;
+	z-index: 999;
 	
 
 	.userBlock {
@@ -739,16 +740,32 @@ header {
 }
 
 
+.zkh-Filters {
+	position: relative;
+	border: 2px solid red;
+	margin-right: 5em;
+}
+
 .zkh-list{
 	display: grid;
   grid-gap: 10px;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
 	grid-auto-rows: 1fr;
 	width: 100%;
 	
 	.zkh-card {
 		transition: .05s ease-out;
 		min-width: 300px;
+		padding: 10px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto;
+		grid-gap: 3px;
+		grid-template-areas: 
+				"zkh-Title zkh-Capaciteit"
+				"zkh-Adress zkh-Soort"
+				"zkh-Specialiteit zkh-Specialiteit"
+			;
 
 		&:hover {
 			box-shadow: 0 0 4px $primary;
@@ -756,29 +773,90 @@ header {
 		
 		.v-card__title {
 			word-break: normal;
+			padding: 0 !important;
 		}
 
-		.zkh-Cap {
-			margin: 0 5px;
+		.zkh-Title{
+			grid-area: zkh-Title;
+			border-bottom: 1px solid $medium;
+		}
+		.zkh-Adress{
+			grid-area: zkh-Adress;
+		}
+		.zkh-Capaciteit{
+			grid-area: zkh-Capaciteit;
+
+			span {
+				font-size: 1.5em;
+				font-weight: 700;
+			}
+		}
+		.zkh-Soort{
+			grid-area: zkh-Soort;
+		}
+		.zkh-Specialiteit{
+			grid-area: zkh-Specialiteit;
 		}
 
-		.v-progress-linear {
-			// background: $primary;
-			.v-progress-linear__buffer {
-				background: $light;
-			}
-			.v-progress-linear__determinate {
-				background: $medium;
-				z-index: 1;
-			}
-			.v-progress-linear__content {
-				justify-content: left;
-				padding-left: .5rem;
-			}
-		}
+
 	}
 }
 
+.v-progress-linear {
+	// background: $primary;
+	.v-progress-linear__buffer {
+		background: $light;
+	}
+	.v-progress-linear__determinate {
+		background: $medium;
+		z-index: 1;
+	}
+	.v-progress-linear__content {
+		justify-content: left;
+		padding-left: .5rem;
+		color: $white;
+	}
+}
+
+.zkh-bezet-bar {
+	width: 100%;
+	height: 25px;
+	background: $light;
+	overflow: hidden;
+	padding: 2px;
+	border-radius: 2px;
+	position: relative;
+
+	.progress {
+		position: relative;
+		float: left;
+		height: 100%;;
+		// width: 50%;
+		border-radius: 0px 3px 3px 0px;
+		background-color: $primary;
+	}
+
+	.percent {
+		color: $white;
+		position: absolute;
+		left: 1.3rem;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 9;
+		margin: 0;
+	}
+}
+
+.zkh-Chip{
+	display: inline-block;
+	margin: .5rem 5px 0;
+	list-style-type: none;
+
+	.v-chip{
+		background: $medium !important;
+		color: $white !important;
+	}
+}
 
 
 

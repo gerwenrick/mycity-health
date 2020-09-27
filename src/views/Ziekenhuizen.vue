@@ -1,12 +1,13 @@
 <template>
   <div class="content">
     <h1>Ziekenhuizen</h1>
+
     <v-container>
       <v-layout row wrap>
         <v-flex xs12 offset-sm1 offset-md2 class="zkh-list">
           <v-card
             class="mx-auto zkh-card"
-            max-width="344"
+            max-width="450"
             outlined
             v-for="ziekenhuis in ziekenhuizen"
             :key="ziekenhuis.id"
@@ -14,24 +15,54 @@
             @click="onLoadZiekenhuis(ziekenhuis.id)"
             style="cursor: pointer"
           >
-            <v-container fluid>
-              <v-layout row>
-                <v-card-title primary-title>
-                  <h5>{{ ziekenhuis.Naam }}</h5>
-                  <!-- <div>Adresgegevens</div> -->
-                </v-card-title>
-                <v-progress-linear
-                  class="zkh-Cap"
-                  v-model="ziekenhuis.Capaciteit"
-                  height="25"
-                  rounded
-                >
-                  <template v-slot="{ value }">
-                    <strong>{{ Math.ceil(value) }}%</strong>
-                  </template>
-                </v-progress-linear>
-              </v-layout>
-            </v-container>
+            <div class="zkh-Title">
+              <v-card-title>
+                <h5>{{ ziekenhuis.Naam }}</h5>
+              </v-card-title>
+            </div>
+            <div class="zkh-Adress">
+              <p>
+                {{ ziekenhuis.Straat }} {{ ziekenhuis.Nummer }},<br />
+                {{ ziekenhuis.Postcode }} {{ ziekenhuis.Plaats }}
+              </p>
+            </div>
+            <div class="zkh-Capaciteit">
+              Bezetting:<span>{{ ziekenhuis.Capaciteit_bezet }}</span
+              >/{{ ziekenhuis.Capaciteit_totaal }}
+              <br />
+              <div class="zkh-bezet-bar">
+                <div
+                  class="progress"
+                  :style="{
+                    width:
+                      bezetting(
+                        ziekenhuis.Capaciteit_bezet,
+                        ziekenhuis.Capaciteit_totaal
+                      ) + '%'
+                  }"
+                ></div>
+                <p class="percent">
+                  {{
+                    bezetting(
+                      ziekenhuis.Capaciteit_bezet,
+                      ziekenhuis.Capaciteit_totaal
+                    )
+                  }}%
+                </p>
+              </div>
+            </div>
+            <div class="zkh-Soort">{{ ziekenhuis.Type }}</div>
+            <div class="zkh-Specialiteit">
+              <ul
+                v-for="(specialiteit, i) in ziekenhuis.Specialiteiten"
+                :key="i"
+                class="zkh-Chip"
+              >
+                <li>
+                  <v-chip>{{ specialiteit }}</v-chip>
+                </li>
+              </ul>
+            </div>
           </v-card>
         </v-flex>
       </v-layout>
@@ -49,13 +80,15 @@ export default {
     };
   },
   // props: ["id", "name"],
-  components: {},
   computed: {
     ...mapState(["userProfile", "ziekenhuizen"])
   },
   methods: {
     onLoadZiekenhuis(id) {
       this.$router.push("/ziekenhuizen/" + id);
+    },
+    bezetting(bezet, totaal) {
+      return Math.floor((bezet / totaal) * 100);
     }
   }
 };
