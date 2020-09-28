@@ -8,8 +8,13 @@
 
         <div class="container" row wrap>
           <div id="selectType" class="selectOption">
-            <label for="ziekenhuisType">Type: </label>
-            <select name="ziekenhuisType" id="ziekenhuisType">
+            <!-- <label for="ziekenhuisType">Type: </label>
+            <select
+              name="ziekenhuisType"
+              id="ziekenhuisType"
+              v-model="selectedType"
+            >
+              <option value="Alle Typen">Alle Typen</option>
               <option
                 v-for="(ziekenhuisType, index) in ziekenhuisTypen"
                 :key="index"
@@ -18,22 +23,64 @@
               >
                 {{ ziekenhuisType }}
               </option>
-            </select>
+            </select> -->
+
+            <fieldset>
+              <legend>Zoekwoord:</legend>
+              <input type="text" v-model="zoekZkh" />
+            </fieldset>
+
+            <fieldset>
+              <legend>Type</legend>
+              <div
+                v-for="(ziekenhuisType, index) in ziekenhuisTypen"
+                :key="index"
+              >
+                <input
+                  type="checkbox"
+                  v-model="hospTypen"
+                  :value="ziekenhuisType"
+                  :id="ziekenhuisType"
+                /><label :for="ziekenhuisType">{{ ziekenhuisType }}</label>
+              </div>
+            </fieldset>
           </div>
 
           <div id="selectSpecial" class="selectOption">
-            <label for="ziekenhuisSpecial">Specialiteiten: </label>
-            <select name="ziekenhuisSpecial" id="ziekenhuisSpecial">
-              <option
+            <fieldset>
+              <legend>Specialiteiten</legend>
+              <div
                 v-for="(ziekenhuisSpecial, index) in ziekenhuisSpecialiteiten"
                 :key="index"
               >
+                <input
+                  type="checkbox"
+                  v-model="hospSpecial"
+                  :value="ziekenhuisSpecial"
+                  :id="ziekenhuisSpecial"
+                /><label :for="ziekenhuisSpecial">{{
+                  ziekenhuisSpecial
+                }}</label>
+              </div>
+            </fieldset>
+
+            <!-- <label for="ziekenhuisSpecial">Specialiteiten: </label>
+            <select
+              name="ziekenhuisSpecial"
+              id="ziekenhuisSpecial"
+              v-model="selectedSpecial"
+            >
+              <option value="Alle Specialiteiten">Alle Specialiteiten</option>
+              <option
+                v-for="(ziekenhuisSpecial, index) in ziekenhuisSpecialiteiten"
+                :key="index"
+                :value="ziekenhuisSpecial"
+              >
                 {{ ziekenhuisSpecial }}
               </option>
-            </select>
+            </select> -->
           </div>
         </div>
-        <div id="soortCheckbox"></div>
       </v-layout>
     </v-container>
 
@@ -44,7 +91,7 @@
             class="mx-auto zkh-card"
             max-width="450"
             outlined
-            v-for="ziekenhuis in ziekenhuizen"
+            v-for="ziekenhuis in filteredZkh"
             :key="ziekenhuis.id"
             :to="'/ziekenhuizen/' + ziekenhuis.id"
             @click="onLoadZiekenhuis(ziekenhuis.id)"
@@ -114,7 +161,9 @@ export default {
       ziekenhuis: [],
       ziekenhuisType: [],
       ziekenhuisSpecial: [],
-      selectSpecial: []
+      hospTypen: [],
+      hospSpecial: [],
+      zoekZkh: ""
     };
   },
   // props: ["id", "name"],
@@ -124,7 +173,33 @@ export default {
       "ziekenhuizen",
       "ziekenhuisTypen",
       "ziekenhuisSpecialiteiten"
-    ])
+    ]),
+    filteredZkh: function() {
+      return this.ziekenhuizen.filter(ziekenhuis => {
+        return (
+          (this.zoekZkh.length === 0 ||
+            ziekenhuis.Naam.toLowerCase().includes(
+              this.zoekZkh.toLowerCase()
+            ) ||
+            ziekenhuis.Plaats.toLowerCase().includes(
+              this.zoekZkh.toLowerCase()
+            ) ||
+            ziekenhuis.Straat.toLowerCase().includes(
+              this.zoekZkh.toLowerCase()
+            ) ||
+            ziekenhuis.Postcode.toLowerCase().includes(
+              this.zoekZkh.toLowerCase()
+            ) ||
+            ziekenhuis.Type.toLowerCase().includes(
+              this.zoekZkh.toLowerCase()
+            )) &&
+          (this.hospTypen.length === 0 ||
+            this.hospTypen.includes(ziekenhuis.Type)) &&
+          (this.hospSpecial.length === 0 ||
+            this.hospSpecial.includes([ziekenhuis.Specialiteiten]))
+        );
+      });
+    }
   },
   methods: {
     onLoadZiekenhuis(id) {
