@@ -746,15 +746,46 @@ header {
 	.selectOption {
 		display: inline-block;
 		margin-right: 1.5rem;
+
+		input {
+			border: 0;
+			font-size: 1.2rem;
+		}
+		input[type="search"] {
+			border: 1px solid $medium;
+			width: 100%;
+			padding: .2rem 1.2rem;
+			border-radius: 2px;
+			appearance: none;
+			z-index: 1;
+			position: relative;
+		}
 	}
 
-	select {
-		position: relative;
-		border: 1px solid grey;
-		padding: .5rem;
-		border-radius: 2px;
+	.filters {
+		.filter {
+			margin-top: 1rem;
+			
+			h5{
+				border-bottom: 1px solid $medium;
+			}
 		
+			.specBox, .typeBox {
+				margin-top: .5rem;
+
+				label {
+					margin-left: .3rem;
+				}
+			}
+		}
 	}
+
+	// select {
+	// 	position: relative;
+	// 	border: 1px solid grey;
+	// 	padding: .5rem;
+	// 	border-radius: 2px;
+	// }
 }
 
 .zkh-list{
@@ -798,8 +829,9 @@ header {
 			grid-area: zkh-Capaciteit;
 
 			span {
-				font-size: 1.5em;
+				font-size: 1.6em;
 				font-weight: 700;
+				margin-left: 0.5rem;
 			}
 		}
 		.zkh-Soort{

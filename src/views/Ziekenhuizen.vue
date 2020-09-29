@@ -3,66 +3,56 @@
     <h1>Ziekenhuizen</h1>
 
     <v-container class="zkh-filters">
-      <v-layout row wrap>
+      <v-layout column wrap style="float: left;">
         <h5>Filters</h5>
 
-        <div class="container" row wrap>
+        <div class="container zkh-filters" row wrap>
           <div id="selectType" class="selectOption">
-            <!-- <label for="ziekenhuisType">Type: </label>
-            <select
-              name="ziekenhuisType"
-              id="ziekenhuisType"
-              v-model="selectedType"
-            >
-              <option value="Alle Typen">Alle Typen</option>
-              <option
-                v-for="(ziekenhuisType, index) in ziekenhuisTypen"
-                :key="index"
-                value="ziekenhuisType"
-                :id="ziekenhuisType"
-              >
-                {{ ziekenhuisType }}
-              </option>
-            </select> -->
+            <div id="searchZkh">
+              <!-- <label for="search">Zoek Ziekenhuis</label> -->
+              <input
+                id="search"
+                type="search"
+                placeholder="Zoek Ziekenhuis..."
+                v-model="zoekZkh"
+              />
+            </div>
 
-            <fieldset>
-              <legend>Zoekwoord:</legend>
-              <input type="text" v-model="zoekZkh" />
-            </fieldset>
-
-            <fieldset>
-              <legend>Type</legend>
-              <div
-                v-for="(ziekenhuisType, index) in ziekenhuisTypen"
-                :key="index"
-              >
-                <input
-                  type="checkbox"
-                  v-model="hospTypen"
-                  :value="ziekenhuisType"
-                  :id="ziekenhuisType"
-                /><label :for="ziekenhuisType">{{ ziekenhuisType }}</label>
+            <div class="filters">
+              <div class="filter">
+                <h5>Type</h5>
+                <div
+                  v-for="(ziekenhuisType, index) in ziekenhuisTypen"
+                  :key="index"
+                  class="typeBox"
+                >
+                  <input
+                    type="checkbox"
+                    v-model="hospTypen"
+                    :value="ziekenhuisType"
+                    :id="ziekenhuisType"
+                  /><label :for="ziekenhuisType">{{ ziekenhuisType }}</label>
+                </div>
               </div>
-            </fieldset>
-          </div>
 
-          <div id="selectSpecial" class="selectOption">
-            <fieldset>
-              <legend>Specialiteiten</legend>
-              <div
-                v-for="(ziekenhuisSpecial, index) in ziekenhuisSpecialiteiten"
-                :key="index"
-              >
-                <input
-                  type="checkbox"
-                  v-model="hospSpecial"
-                  :value="ziekenhuisSpecial"
-                  :id="ziekenhuisSpecial"
-                /><label :for="ziekenhuisSpecial">{{
-                  ziekenhuisSpecial
-                }}</label>
+              <div class="filter">
+                <h5>Specialiteiten</h5>
+                <div
+                  v-for="(ziekenhuisSpecial, index) in ziekenhuisSpecialiteiten"
+                  :key="index"
+                  class="specBox"
+                >
+                  <input
+                    type="checkbox"
+                    v-model="hospSpecial"
+                    :value="ziekenhuisSpecial"
+                    :id="ziekenhuisSpecial"
+                  /><label :for="ziekenhuisSpecial">{{
+                    ziekenhuisSpecial
+                  }}</label>
+                </div>
               </div>
-            </fieldset>
+            </div>
 
             <!-- <label for="ziekenhuisSpecial">Specialiteiten: </label>
             <select
@@ -196,7 +186,9 @@ export default {
           (this.hospTypen.length === 0 ||
             this.hospTypen.includes(ziekenhuis.Type)) &&
           (this.hospSpecial.length === 0 ||
-            this.hospSpecial.includes([ziekenhuis.Specialiteiten]))
+            this.hospSpecial.some(
+              r => ziekenhuis.Specialiteiten.indexOf(r) >= 0
+            ))
         );
       });
     }

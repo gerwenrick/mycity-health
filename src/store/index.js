@@ -15,7 +15,7 @@ fb.ziekenhuisCollection.orderBy("id", "asc").limit(10).onSnapshot(snapshot => {
   snapshot.forEach(doc => {
     let ziekenhuis = doc.data();
     let zkhType = ziekenhuis.Type;
-    let zkhSpecialiteiten = ziekenhuis.Specialiteiten;
+    let zkhSpecialiteiten = ziekenhuis.Specialiteiten.sort();
 
     ziekenhuis.id = doc.id;
 
@@ -24,7 +24,7 @@ fb.ziekenhuisCollection.orderBy("id", "asc").limit(10).onSnapshot(snapshot => {
     ziekenhuisSpecialArray.push(zkhSpecialiteiten);
   });
 
-  const zkhSpecialArray = [].concat.apply([], ziekenhuisSpecialArray).sort();
+  let zkhSpecialArray = [].concat.apply([], ziekenhuisSpecialArray).sort();
 
   let uniqueZkhType = [...new Set(ziekenhuisTypeArray)];
   let uniqueZkhSpecial = [...new Set(zkhSpecialArray)];
@@ -32,7 +32,6 @@ fb.ziekenhuisCollection.orderBy("id", "asc").limit(10).onSnapshot(snapshot => {
 
   store.commit("setZiekenhuizen", ziekenhuisArray);
   store.commit("setZiekenhuisType", uniqueZkhType);
-  // store.commit("setZiekenhuisSpecial", ziekenhuisSpecialArray);
   store.commit("setZiekenhuisSpecial", uniqueZkhSpecial);
 });
 
