@@ -651,6 +651,24 @@ header {
 
 // ziekenhuizen
 
+.zkhPageCont {
+	display: grid;
+	grid-template-columns: minmax(100px, 250px) 1fr;
+	grid-template-rows: auto;
+	grid-gap: 1.5rem;
+	grid-template-areas: 
+			"filterCol listCol";
+		
+	.filterCol {
+		grid-area: filterCol;
+		position: fixed;
+		top: 95px;
+	} 
+	.listCol {
+		grid-area: listCol;
+	}
+}
+
 #ziekenhuis-page {
 	display: flex;
 	flex-flow: row wrap;
@@ -741,11 +759,11 @@ header {
 
 .zkh-filters {
 	position: relative;
-	margin-right: 5em;
+	// margin-right: 5em;
 
 	.selectOption {
 		display: inline-block;
-		margin-right: 1.5rem;
+		// margin-right: 1.5rem;
 
 		input {
 			border: 0;

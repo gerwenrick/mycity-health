@@ -1,12 +1,11 @@
 <template>
   <div class="content">
-    <h1>Ziekenhuizen</h1>
-
-    <v-container class="zkh-filters">
-      <v-layout column wrap style="float: left;">
+    <v-container class="zkhPageCont">
+      <v-layout column wrap class="filterCol">
+        <h1>Ziekenhuizen</h1>
         <h5>Filters</h5>
 
-        <div class="container zkh-filters" row wrap>
+        <div class="zkh-filters" row wrap>
           <div id="selectType" class="selectOption">
             <div id="searchZkh">
               <!-- <label for="search">Zoek Ziekenhuis</label> -->
@@ -72,10 +71,8 @@
           </div>
         </div>
       </v-layout>
-    </v-container>
 
-    <v-container>
-      <v-layout row wrap>
+      <v-layout class="listCol">
         <v-flex xs12 offset-sm1 offset-md2 class="zkh-list">
           <v-card
             class="mx-auto zkh-card"
