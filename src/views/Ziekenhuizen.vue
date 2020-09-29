@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <v-container class="zkhPageCont">
+    <div class="zkhPageCont">
       <v-layout column wrap class="filterCol">
         <h1>Ziekenhuizen</h1>
         <h5>Filters</h5>
@@ -135,7 +135,7 @@
           </v-card>
         </v-flex>
       </v-layout>
-    </v-container>
+    </div>
   </div>
 </template>
 
