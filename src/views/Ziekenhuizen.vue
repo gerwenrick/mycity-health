@@ -94,6 +94,7 @@
                 {{ ziekenhuis.Straat }} {{ ziekenhuis.Nummer }},<br />
                 {{ ziekenhuis.Postcode }} {{ ziekenhuis.Plaats }}
               </p>
+              <p class="zkh-tel">{{ ziekenhuis.Telnr }}</p>
             </div>
             <div class="zkh-Capaciteit">
               Bezetting:<span>{{ ziekenhuis.Capaciteit_bezet }}</span
@@ -120,7 +121,9 @@
                 </p>
               </div>
             </div>
-            <div class="zkh-Soort">{{ ziekenhuis.Type }}</div>
+            <div class="zkh-Soort">
+              <p>{{ ziekenhuis.Type }}</p>
+            </div>
             <div class="zkh-Specialiteit">
               <ul
                 v-for="(specialiteit, i) in ziekenhuis.Specialiteiten"

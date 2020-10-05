@@ -767,7 +767,7 @@ header {
 
 		input {
 			border: 0;
-			font-size: 1.2rem;
+			font-size: 1.1rem;
 		}
 		input[type="search"] {
 			border: 1px solid $medium;
@@ -842,6 +842,33 @@ header {
 		}
 		.zkh-Adress{
 			grid-area: zkh-Adress;
+
+			.zkh-tel {
+				color: $primary;
+				text-decoration: underline;
+				cursor: pointer;
+				position: relative;
+				margin-left: 1rem;
+				font-size: 1.1em;
+
+				&::before {
+					content: '\1F57B';
+					position: absolute;
+					display: inline-block;
+					left: -.5rem;
+					top: 50%;
+					transform: translate(-50%, -50%);
+					height: 1.5rem;
+					width: 1rem;
+					font-size: 1.5em;
+					line-height: 1;
+					text-decoration: none;
+				}
+
+				&:hover {
+					color: $medium;
+				}
+			}
 		}
 		.zkh-Capaciteit{
 			grid-area: zkh-Capaciteit;
