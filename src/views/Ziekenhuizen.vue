@@ -8,7 +8,6 @@
         <div class="zkh-filters" row wrap>
           <div id="selectType" class="selectOption">
             <div id="searchZkh">
-              <!-- <label for="search">Zoek Ziekenhuis</label> -->
               <input
                 id="search"
                 type="search"

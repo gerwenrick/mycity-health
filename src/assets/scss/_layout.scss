@@ -428,9 +428,33 @@ header {
 			margin-bottom: 0.5rem;
 		}
 
-		textarea {
-			height: 200px;
+		#triageSelect {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			position: relative;
+
+			#selectedTriage {
+				border: 1px solid $primary;
+				padding: .3rem .7rem;
+				margin: 0 0 0 .5rem;
+				position: relative;
+				width: auto;
+			}
+	}
+
+		textarea,
+		input {
+			height: auto;
+			min-height: 100px;
+			padding: .4em;
 			margin: 0;
+			border: 1px solid $primary;
+			border-radius: 3px;
+		}
+
+		input {
+			min-height: unset;
 		}
 
 		.button {
@@ -438,6 +462,10 @@ header {
 			width: 100%;
 			z-index: 5;
 			border-radius: 0 0 3px 3px;
+		}
+
+		label{
+			margin: .5rem 0 0.2rem 0;
 		}
 	}
 
@@ -613,6 +641,15 @@ header {
 		}
 	}
 }
+
+
+// inbox
+.triageDrop{
+	border: 1px solid $primary;
+	border-radius: 2px;
+	padding: .1em .3em;
+}
+
 
 // settings
 #settings {
@@ -935,6 +972,12 @@ header {
 		z-index: 9;
 		margin: 0;
 	}
+}
+
+.availAmbu {
+	text-align: right;
+	font-weight: 600;
+	float: right;
 }
 
 .zkh-Chip{

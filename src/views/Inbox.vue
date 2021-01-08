@@ -5,18 +5,38 @@
       <section>
         <div class="col1">
           <div class="profile">
-            <h5>{{ userProfile.name }}</h5>
-            <p>{{ userProfile.title }}</p>
+            <h5>Urgentie melding aanmaken</h5>
             <div class="create-post">
-              <p>create a post</p>
               <form @submit.prevent>
-                <textarea v-model.trim="post.content"></textarea>
+                <div id="triageSelect">
+                  <span>Triage beoordeling:</span>
+                  <select v-model.trim="post.triage" id="selectedTriage">
+                    <option disabled value="">Triage</option>
+                    <option>U0</option>
+                    <option>U1</option>
+                    <option>U2</option>
+                    <option>U3</option>
+                    <option>U4</option>
+                    <option>U5</option>
+                  </select>
+                </div>
+
+                <label>Soort ongeval:</label>
+                <textarea
+                  v-model.trim="post.ongeval"
+                  placeholder="Soort ongeval"
+                ></textarea>
+                <label> Extra informatie:</label>
+                <textarea
+                  v-model.trim="post.content"
+                  placeholder="Extra informatie"
+                ></textarea>
                 <button
                   @click="createPost()"
-                  :disabled="post.content === ''"
+                  :disabled="post.ongeval === '' || post.triage === ''"
                   class="button"
                 >
-                  post
+                  Melding verzenden
                 </button>
               </form>
             </div>
@@ -25,10 +45,10 @@
         <div class="col2">
           <div v-if="posts.length">
             <div v-for="post in posts" :key="post.id" class="post">
-              <h5>{{ post.userName }}</h5>
               <span>{{ post.createdOn | formatDate }}</span>
+              <h5>{{ post.triage }} - {{ post.ongeval }}</h5>
               <p>{{ post.content | trimLength }}</p>
-              <ul>
+              <!-- <ul>
                 <li>
                   <a @click="toggleCommentModal(post)"
                     >comments {{ post.comments }}</a
@@ -42,7 +62,7 @@
                 <li>
                   <a @click="viewPost(post)">view full post</a>
                 </li>
-              </ul>
+              </ul> -->
             </div>
           </div>
           <div v-else>
@@ -62,18 +82,26 @@ export default {
   data() {
     return {
       post: {
-        content: ""
-      }
+        content: "",
+        triage: "",
+        ongeval: "",
+      },
     };
   },
   computed: {
-    ...mapState(["userProfile", "posts"])
+    ...mapState(["userProfile", "posts"]),
   },
   methods: {
     createPost() {
-      this.$store.dispatch("createPost", { content: this.post.content });
+      this.$store.dispatch("createPost", {
+        triage: this.post.triage,
+        content: this.post.content,
+        ongeval: this.post.ongeval,
+      });
+      this.post.triage = "";
       this.post.content = "";
-    }
+      this.post.ongeval = "";
+    },
   },
   filters: {
     formatDate(val) {
@@ -82,15 +110,15 @@ export default {
       }
 
       let date = val.toDate();
-      return moment(date).fromNow();
+      return moment(date).format("MMMM Do YYYY, h:mm:ss");
     },
     trimLength(val) {
       if (val.length < 200) {
         return val;
       }
       return `${val.substring(0, 200)}...`;
-    }
-  }
+    },
+  },
 };
 </script>
 

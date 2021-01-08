@@ -8,15 +8,21 @@
       <v-col class="calendar">
         <v-sheet height="64">
           <v-toolbar flat color="white">
-            <v-btn color="primary" class="mr-4" @click="dialog = true" dark>New Event</v-btn>
-            <v-btn outlined class="mr-4" color="grey darken-2" @click="setToday">Today</v-btn>
+            <v-btn color="primary" class="mr-4" @click="dialog = true" dark
+              >New Event</v-btn
+            >
+            <v-btn outlined class="mr-4" color="grey darken-2" @click="setToday"
+              >Today</v-btn
+            >
             <v-btn fab text small color="grey darken-2" @click="prev">
               <v-icon small>mdi-chevron-left</v-icon>
             </v-btn>
             <v-btn fab text small color="grey darken-2" @click="next">
               <v-icon small>mdi-chevron-right</v-icon>
             </v-btn>
-            <v-toolbar-title v-if="$refs.calendar">{{ $refs.calendar.title }}</v-toolbar-title>
+            <v-toolbar-title v-if="$refs.calendar">{{
+              $refs.calendar.title
+            }}</v-toolbar-title>
             <!-- <v-toolbar-title>{{ title }}</v-toolbar-title> -->
             <v-spacer></v-spacer>
             <v-menu bottom right>
@@ -48,17 +54,38 @@
           <v-card>
             <v-container>
               <v-form @submit.prevent="addEvent">
-                <v-text-field v-model="name" type="text" label="Melding naam (verplicht)"></v-text-field>
-                <v-text-field v-model="details" type="text" label="Details"></v-text-field>
-                <v-text-field v-model="start" type="date" label="Start (verplicht)"></v-text-field>
-                <v-text-field v-model="end" type="date" label="Eind (verplicht)"></v-text-field>
-                <v-text-field v-model="color" type="color" label="Kleur (klik voor kleurkiezer)"></v-text-field>
+                <v-text-field
+                  v-model="name"
+                  type="text"
+                  label="Melding naam (verplicht)"
+                ></v-text-field>
+                <v-text-field
+                  v-model="details"
+                  type="text"
+                  label="Details"
+                ></v-text-field>
+                <v-text-field
+                  v-model="start"
+                  type="date"
+                  label="Start (verplicht)"
+                ></v-text-field>
+                <v-text-field
+                  v-model="end"
+                  type="date"
+                  label="Eind (verplicht)"
+                ></v-text-field>
+                <v-text-field
+                  v-model="color"
+                  type="color"
+                  label="Kleur (klik voor kleurkiezer)"
+                ></v-text-field>
                 <v-btn
                   type="submit"
                   color="primary"
                   class="mr-4"
                   @click.stop="dialog = false"
-                >Nieuwe melding</v-btn>
+                  >Nieuwe melding</v-btn
+                >
               </v-form>
             </v-container>
           </v-card>
@@ -92,7 +119,9 @@
               </v-toolbar>
               <v-card-text>
                 <!-- <span v-html="selectedEvent.details"></span> -->
-                <form v-if="currentlyEditing !== selectedEvent.id">{{selectedEvent.details}}</form>
+                <form v-if="currentlyEditing !== selectedEvent.id">
+                  {{ selectedEvent.details }}
+                </form>
                 <form v-else>
                   <textarea
                     v-model="selectedEvent.details"
@@ -104,13 +133,18 @@
                 </form>
               </v-card-text>
               <v-card-actions>
-                <v-btn text color="secondary" @click="selectedOpen = false">Cancel</v-btn>
+                <v-btn text color="secondary" @click="selectedOpen = false"
+                  >Cancel</v-btn
+                >
                 <v-btn
                   text
                   v-if="currentlyEditing !== selectedEvent.id"
                   @click.prevent="editEvent(selectedEvent)"
-                >Edit</v-btn>
-                <v-btn text v-else @click.prevent="updateEvent(selectedEvent)">Save</v-btn>
+                  >Edit</v-btn
+                >
+                <v-btn text v-else @click.prevent="updateEvent(selectedEvent)"
+                  >Save</v-btn
+                >
               </v-card-actions>
             </v-card>
           </v-menu>
