@@ -10,8 +10,7 @@ Vue.use(Vuex);
 // ziekenhuizen
 fb.ziekenhuisCollection
 	.orderBy('id', 'asc')
-	// .limit(26)
-	.limit(2)
+	.limit(25)
 	.onSnapshot((snapshot) => {
 		let ziekenhuisArray = [];
 		let ziekenhuisTypeArray = [];
@@ -42,7 +41,7 @@ fb.ziekenhuisCollection
 // ambulances
 fb.ambulanceCollection
 	.orderBy('id', 'asc')
-	.limit(3)
+	// .limit(3)
 	.onSnapshot((snapshot) => {
 		let ambulanceArray = [];
 
