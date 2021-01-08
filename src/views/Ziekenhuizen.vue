@@ -80,7 +80,6 @@
             v-for="ziekenhuis in filteredZkh"
             :key="ziekenhuis.id"
             :to="'/ziekenhuizen/' + ziekenhuis.id"
-            @click="onLoadZiekenhuis(ziekenhuis.id)"
             style="cursor: pointer"
           >
             <div class="zkh-Title">
@@ -107,7 +106,7 @@
                       bezetting(
                         ziekenhuis.Capaciteit_bezet,
                         ziekenhuis.Capaciteit_totaal
-                      ) + '%'
+                      ) + '%',
                   }"
                 ></div>
                 <p class="percent">
@@ -152,7 +151,7 @@ export default {
       ziekenhuisSpecial: [],
       hospTypen: [],
       hospSpecial: [],
-      zoekZkh: ""
+      zoekZkh: "",
     };
   },
   // props: ["id", "name"],
@@ -161,10 +160,10 @@ export default {
       "userProfile",
       "ziekenhuizen",
       "ziekenhuisTypen",
-      "ziekenhuisSpecialiteiten"
+      "ziekenhuisSpecialiteiten",
     ]),
-    filteredZkh: function() {
-      return this.ziekenhuizen.filter(ziekenhuis => {
+    filteredZkh: function () {
+      return this.ziekenhuizen.filter((ziekenhuis) => {
         return (
           (this.zoekZkh.length === 0 ||
             ziekenhuis.Naam.toLowerCase().includes(
@@ -186,11 +185,11 @@ export default {
             this.hospTypen.includes(ziekenhuis.Type)) &&
           (this.hospSpecial.length === 0 ||
             this.hospSpecial.some(
-              r => ziekenhuis.Specialiteiten.indexOf(r) >= 0
+              (r) => ziekenhuis.Specialiteiten.indexOf(r) >= 0
             ))
         );
       });
-    }
+    },
   },
   methods: {
     onLoadZiekenhuis(id) {
@@ -198,8 +197,8 @@ export default {
     },
     bezetting(bezet, totaal) {
       return Math.floor((bezet / totaal) * 100);
-    }
-  }
+    },
+  },
 };
 </script>
 
