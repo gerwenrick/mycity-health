@@ -79,7 +79,6 @@
             outlined
             v-for="ziekenhuis in filteredZkh"
             :key="ziekenhuis.id"
-            :to="'/ziekenhuizen/' + ziekenhuis.id"
             style="cursor: pointer"
           >
             <div class="zkh-Title">
