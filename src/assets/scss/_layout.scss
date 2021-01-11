@@ -42,6 +42,7 @@ header {
 
 .nav-section {
 	height: 93%;
+	margin-top: 1rem;
 
 	.nav-ul {
 		display: flex;
@@ -82,7 +83,7 @@ header {
 				}
 
 				&:hover {
-					background-color: $dark;
+					background-color: $medium;
 					color: $white;
 
 					&:after {
@@ -437,9 +438,8 @@ header {
 			#selectedTriage {
 				border: 1px solid $primary;
 				padding: .3rem .7rem;
-				margin: 0 0 0 .5rem;
 				position: relative;
-				width: auto;
+				width: 100%;
 			}
 	}
 
@@ -461,7 +461,7 @@ header {
 			margin-top: 1rem;
 			width: 100%;
 			z-index: 5;
-			border-radius: 0 0 3px 3px;
+			border-radius: 3px ;
 		}
 
 		label{
@@ -500,7 +500,7 @@ header {
 		background: $white;
 
 		&:hover {
-			background: #f5f8fa;
+			background: $light;
 		}
 
 		&:last-of-type {
@@ -855,6 +855,7 @@ header {
 		min-width: 300px;
 		padding: 10px;
 		display: grid;
+		pointer-events: none;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: auto;
 		grid-gap: 3px;
@@ -986,8 +987,9 @@ header {
 	list-style-type: none;
 
 	.v-chip{
-		background: $medium !important;
-		color: $white !important;
+		background: $white !important;
+		color: $medium !important;
+		border: 1px solid $medium !important;
 	}
 }
 
@@ -1028,5 +1030,43 @@ header {
 	a {
 		color: $white !important;
 		background-color: $primary !important;
+	}
+
+	.v-btn, .v-btn--contained, .v-btn--router, .theme--light, .v-size--default {
+		background-color: $white !important;
+		color: $primary !important;
+		margin-left: 25%;
+		position: relative;
+
+		&:hover{
+			background-color: $light !important;
+		}
+	}
+
+	.zkh-tel {
+		color: $primary;
+		text-decoration: underline;
+		cursor: pointer;
+		position: relative;
+		margin-left: 1rem;
+		font-size: 1.1em;
+
+		&::before {
+			content: '\1F57B';
+			position: absolute;
+			display: inline-block;
+			left: -.5rem;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			height: 1.5rem;
+			width: 1rem;
+			font-size: 1.5em;
+			line-height: 1;
+			text-decoration: none;
+		}
+
+		&:hover {
+			color: $medium;
+		}
 	}
 }

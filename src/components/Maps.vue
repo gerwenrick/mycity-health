@@ -80,10 +80,10 @@
             {{ ziekenhuis.Straat }} {{ ziekenhuis.Nummer }},
             <br />
             {{ ziekenhuis.Postcode }} {{ ziekenhuis.Plaats }}
+            <br />
+            <span class="zkh-tel">{{ ziekenhuis.Telnr }}</span>
           </p>
-          <v-btn
-            :to="'/ziekenhuizen/' + ziekenhuis.id"
-            @click="onLoadZiekenhuis(ziekenhuis.id)"
+          <v-btn :to="'/ziekenhuizen/'" @click="onLoadZiekenhuis(ziekenhuis.id)"
             >Meer Informatie</v-btn
           >
         </l-popup>
