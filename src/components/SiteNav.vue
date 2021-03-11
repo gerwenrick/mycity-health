@@ -66,7 +66,7 @@
 <script>
 import IconBase from "../components/IconBase";
 import IconHome from "../components/Icons/IconHome";
-import IconCalendar from "../components/Icons/IconCalendar";
+// import IconCalendar from "../components/Icons/IconCalendar";
 import IconDashboard from "../components/Icons/IconDashboard";
 import IconInbox from "../components/Icons/IconInbox";
 // import IconSettings from "../components/Icons/IconSettings";
@@ -77,7 +77,7 @@ export default {
   components: {
     IconBase,
     IconHome,
-    IconCalendar,
+    // IconCalendar,
     IconDashboard,
     IconInbox,
     // IconSettings,
@@ -88,7 +88,7 @@ export default {
     return {
       IconBase,
       IconHome,
-      IconCalendar,
+      // IconCalendar,
       IconDashboard,
       IconInbox,
       // IconSettings,
