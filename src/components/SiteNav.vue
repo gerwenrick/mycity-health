@@ -33,6 +33,7 @@
             >Inbox
           </router-link>
         </li>
+        <!--
         <li>
           <router-link to="/kalender">
             <icon-base class="link-icon" icon-name="calendar">
@@ -40,7 +41,7 @@
             >Kalender
           </router-link>
         </li>
-        <!-- <li>
+        <li>
           <router-link to="/settings">
             <icon-base class="link-icon" icon-name="settings">
               <icon-settings /> </icon-base
