@@ -47,8 +47,8 @@
               <icon-settings /> </icon-base
             >Settings
           </router-link>
-        </li> -->
-        <!-- <li id="logout">
+        </li> 
+        <li id="logout">
           <a @click="logout()">
             <icon-base class="link-icon" icon-name="logout">
               <icon-logout />
